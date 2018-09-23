@@ -10,9 +10,10 @@ import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import Login from '../login'
 import HomeScreen from './homeScreen';
 import AuthLoadingScreen from '../login/authLoadingScreen'
+import Visual from '../app/visual'
 
 
-const AppStack  = createStackNavigator({ Home: HomeScreen, Other: Login });
+const AppStack  = createStackNavigator({ Home: HomeScreen, Other: Login, Visual:Visual });
 const AuthStack = createStackNavigator({ SignIn: Login });
 
 export default createSwitchNavigator(

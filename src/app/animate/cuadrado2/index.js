@@ -21,15 +21,19 @@ export default class Cuadrado2 extends Component {
     super()
     this.state = {
       animate: new Animated.Value(30),
-      animateXY: new Animated.ValueXY({x: 0, y: 0}),
+      animateXY: new Animated.ValueXY({x: 0, y: -20}),
       radius: new Animated.Value(0)
     }
+    this.animateInterpolate = this.state.animateXY.x.interpolate({
+        inputRange: [0,300],
+        outputRange: [1,.4]
+    })
   }
   
   componentWillMount () {
     Animated.sequence([
       Animated.timing(this.state.animateXY, {
-        toValue: {x: height / 2, y: 0},
+        toValue: {x: height / 2, y: -140},
         duration: 6000
       }),
       Animated.timing(this.state.animate, {
@@ -55,7 +59,8 @@ export default class Cuadrado2 extends Component {
               position: 'absolute',
               top: this.state.animateXY.x,
               left: this.state.animateXY.y,
-              borderRadius: this.state.radius
+              borderRadius: this.state.radius,
+                opacity:this.animateInterpolate
             }
           }
         />
@@ -66,19 +71,7 @@ export default class Cuadrado2 extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+ 
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });

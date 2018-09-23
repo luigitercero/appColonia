@@ -6,9 +6,9 @@ import {
   Animated,StyleSheet
 } from 'react-native';
 import styles from './styles';
-import Cuadrado from './cuadrado'
-import CuadradoAnimation from './cuadradoAnimation'
-import Cuadrado2 from './cuadrado2'
+import Cuadrado from './animate/cuadrado'
+import CuadradoAnimation from './animate/cuadradoAnimation'
+import Cuadrado2 from './animate/cuadrado2'
 
 const style= StyleSheet.create({
     conteiner: {
@@ -53,11 +53,14 @@ class HomeScreen extends React.Component {
             />
         </View>
         <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
-        
+        <Button title="Visual" onPress={this._visualApp} />
       </View>
     );
   }
 
+  _visualApp = () => {
+      this.props.navigation.navigate('Visual')
+  }
   _showMoreApp = () => {
     this.props.navigation.navigate('Other');
   };

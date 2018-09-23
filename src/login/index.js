@@ -55,11 +55,7 @@ class Login extends React.Component {
                         >
                             <Text style={styles.text}>Sing In</Text>
                         </TouchableOpacity>
-                        <Animated.View
-                style={ 
-                    {
-                        with:60,height:60,backgroundColor:'#fabada'}}
-            />
+                      
                     </View>
                 </KeyboardAvoidingView>
               
