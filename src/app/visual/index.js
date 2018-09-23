@@ -7,7 +7,8 @@ import {
     TouchableHighlight,
     Dimensions,
     Image,
-    Animated
+    Animated,
+    TextInput
 } from 'react-native'
 
 import data from './data'
@@ -25,7 +26,8 @@ export default class Visual extends Component {
             dataSource: ds.cloneWithRows(data),
             rotateY: new Animated.Value(0),
             translateX: new Animated.Value(width),
-            menuAnimation: new Animated.Value(0)
+            menuAnimation: new Animated.Value(0),
+            text: ''
         }
     }
 
@@ -119,6 +121,17 @@ export default class Visual extends Component {
             </TouchableHighlight>
         )
     }
+    filterSearch(text){
+        const newData = data.filter(function(item){
+            const itemData = item.food.toUpperCase()
+            const textData = text.toUpperCase()
+            return itemData.indexOf(textData) > -1
+        })
+        this.setState({
+            dataSource: this.state.dataSource.cloneWithRows(newData),
+            text: text
+        })
+    }
     render(){
         return (
             <View style={styles.container}>
@@ -147,7 +160,13 @@ export default class Visual extends Component {
                     }]}
                 >
                     {this.state.isOpenMenu ? <Navbar icon="times" showMenu={this.closeMenu.bind(this)}/> : <Navbar icon="bars" showMenu={this.showMenu.bind(this)}/>}
+                    <TextInput 
+                        style={styles.textInput}
+                        onChangeText={(text) => this.filterSearch(text)}
+                        value={this.state.text}
+                    />
                     <ListView 
+                        enableEmptySections={true}
                         style={styles.listContainer}
                         renderRow={this.renderRow.bind(this)}
                         dataSource={this.state.dataSource}
@@ -178,6 +197,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#555566'
+    },
+    textInput: {
+        height: 30,
+        borderWidth: 1,
+        borderColor: '#cecece',
+        marginBottom: 10,
+        marginHorizontal: 10
     },
     content: {
         zIndex: 1
