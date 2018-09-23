@@ -53,7 +53,7 @@ class HomeScreen extends React.Component {
             />
         </View>
         <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
-        <Button title="Visual" onPress={this._visualApp} />
+        <Button title="Visual " onPress={this._visualApp} />
       </View>
     );
   }

@@ -11,8 +11,8 @@ export default class Heaer extends React.Component {
 
     render (){
         return (
-            <View>
-                <TouchableHighlight>
+            <View  style = {styles.container}>
+                <TouchableHighlight onPress = {this.props.showMenu}>
                     <Icon name = {this.props.icon} size={25} color = "#AAA"/>
                 </TouchableHighlight>
                 <Icon name = 'search' size={25} color = "#AAA"/>
@@ -24,25 +24,12 @@ export default class Heaer extends React.Component {
 }
 
 const styles =StyleSheet.create ({
-    footerContainer: {
+    container: {
         flexDirection: 'row',
-        paddingHorizontal: 10,
+        marginBottom:10,
+        paddingHorizontal:20,
         paddingVertical:10,
-        backgroundColor: '#555566'
+        justifyContent:'space-between'
     },
-    imageAvatar: {
-        width: 50,
-        height:50,
-        borderRadius:30, 
-        marginRight:5
-    },
-    listContainer: {
-        marginHorizontal:15
-    },
-    text: {
-        color:'#fff'
-    },
-    borederCell:{
-        marginBottom:10
-    }
+    
 })
